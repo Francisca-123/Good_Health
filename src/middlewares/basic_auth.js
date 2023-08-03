@@ -1,4 +1,4 @@
-const { InvalidOrExpiredToken, AuthForbiddenException} = require("../../server/config/errorHandling")
+const { InvalidOrExpiredToken, AuthForbiddenException} = require("../config/errorHandling")
 const userModel = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
