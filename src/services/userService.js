@@ -12,7 +12,8 @@ async function getUserByEmail(email) {
 
     }
     catch(error){
-        throw new Error("Failed to fetch user by email")
+        // throw new Error("Failed to fetch user by email")
+        console.log(error);
     }
 }
 

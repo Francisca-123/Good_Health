@@ -15,7 +15,7 @@ async function signup(req, res, next){
         }
 
         const existingUser = await getUserByEmail(email);
-        console.log(existingUser);
+        
 
         if(existingUser){
             return res.status(400).json({message:`User already exist. Sign in instead`});
