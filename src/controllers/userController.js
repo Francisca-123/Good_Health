@@ -20,9 +20,11 @@ async function signup(req, res, next){
         if(existingUser){
             return res.status(400).json({message:`User already exist. Sign in instead`});
         }
+        
 
         const hashPassword = bcrypt.hashSync(password, 10);
-        await createUser({
+
+        const newUser = await createUser({
             firstname,
             lastname,
             email,
@@ -30,11 +32,23 @@ async function signup(req, res, next){
             telephone,
             address
         });
-
-        return res.status(201).json({
-            success:true,
-            message:`User created successfully`
+        
+        
+        const tokenPayload = jwt.sign({email:newUser.email,id: newUser._id}, process.env.JWT_SECRET || "Francisca123." ,
+        {
+            expiresIn:'1h'
         });
+
+        return res.status(200).json({
+            success: true,
+            message: "Login Successfully",
+            tokenPayload,
+            name: newUser.firstname,
+            id: newUser._id,
+            email: newUser.email
+        });
+
+     
     }
     catch(error){
         console.error(error);
