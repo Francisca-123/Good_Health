@@ -51,8 +51,13 @@ async function login(req, res, next){
         }
 
         const userexisting = await getUserByEmail(email);
+        
+        if(!userexisting){
+            return res.status(400).json({message:`User does not exist`});
+        }
+
         const passwordMatch = await bcrypt.compare(password, userexisting.password)
-        if(!userexisting || !passwordMatch){
+        if( !passwordMatch){
             return res.status(401).json({
                 success: false,
                 message:`Invalid email or password `
