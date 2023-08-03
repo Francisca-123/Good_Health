@@ -1,7 +1,7 @@
 const user = require ("../models/userModel")
 
-const createUser = async ()=>{
-    const newUser = await user.create(user)
+const createUser = async (details)=>{
+    const newUser = await user.create(details)
 
     return newUser
 }
