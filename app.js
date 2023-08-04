@@ -2,7 +2,8 @@ require("dotenv").config()
 const express = require("express");
 const userRouter = require("./src/routes/userRoute")
 const scheduleRouter = require("./src/routes/scheduleRoute")
-const connectDB = require("./src/config/db")
+const connectDB = require("./src/config/db");
+const cors = require("cors")
 
 const jwt = require('jsonwebtoken');
 
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 3000
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 
 app.use(`/auth`, userRouter);
