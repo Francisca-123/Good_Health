@@ -87,6 +87,9 @@ async function login(req, res, next){
             success: true,
             message: "Login Successfully",
             tokenPayload,
+            name: userexisting.firstname,
+            email: userexisting.email
+
         });
 }
 
